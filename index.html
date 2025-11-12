@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,6 +12,10 @@
 <meta name="theme-color" content="#0e1116" />
 
 <style>
+nav-links{ display:flex; gap:16px; align-items:center; margin-right:12px }
+.nav-links a{ color:#cfe2ff; }
+@media (max-width:900px){ .nav-links{ gap:12px } }
+
 :root{
 --bg:#0e1116; --bg2:#101620; --card:#161c26; --line:#232e3f; --text:#ecf1f8; --muted:#a7b1c2;
 --acc1:#2dd4bf; --acc2:#60a5fa; --cta:#2dd4bf; --ctaTxt:#06221f; --btn:#0f1724; --btnBr:#2a3b55;
@@ -35,19 +39,26 @@ backdrop-filter: saturate(140%) blur(6px);
 background: rgba(10,14,20,.55);
 border-bottom:1px solid var(--line);
 }
-.nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
+.nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:12px }
 .brand{ display:flex; gap:10px; align-items:center }
 /* Hooporia logo sizing */
-.logo {
-height: 42px;
-width: auto;
-border-radius: 6px;
-}
-@media (max-width: 600px) {
-.logo { height: 34px; }
-}
+.logo { height: 42px; width: auto; border-radius: 6px; }
+@media (max-width: 600px){ .logo { height: 34px; } }
 .title{ font-weight:800; letter-spacing:.2px }
 .badge{ font-size:12px; color:var(--muted) }
+
+/* Lang toggle */
+.lang-toggle{display:flex; gap:8px; margin-left:auto}
+.lang-toggle button{
+border:1px solid #2a3b55; background:#0d1320; color:#cfe2ff;
+border-radius:20px; padding:6px 10px; cursor:pointer; font-size:12px
+}
+.lang-toggle button.active{
+background:linear-gradient(90deg,var(--acc1),var(--acc2)); color:#06221f; border:none; font-weight:800
+}
+/* Show/hide by language */
+[data-lang="en"] .lang-es{display:none}
+[data-lang="es"] .lang-en{display:none}
 
 .nav-cta a{
 display:inline-block; padding:10px 14px; border-radius:10px;
@@ -99,27 +110,96 @@ h2{ margin:0 0 12px 0; font-size:22px }
 h3{ margin:0 0 6px 0; font-size:16px }
 p{ margin:0; color:var(--muted); line-height:1.5 }
 
-/* Footer */
 .footer{
 border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:16px 0; margin-top:10px
 }
 .footer a{ color:#9fc1ff; text-decoration:underline }
 .center{ text-align:center }
+
+/* Base */
+.nav-links a { margin-left:14px; color:var(--text); white-space:nowrap }
+.nav-links .launch{
+display:inline-block; padding:10px 14px; border-radius:10px;
+background:linear-gradient(90deg,var(--acc1),var(--acc2)); color:var(--ctaTxt); font-weight:800;
+border:1px solid #1b2c3f; margin-left:14px;
+}
+
+/* Mobile hamburger */
+.menu-btn{
+display:none; position:relative; width:38px; height:34px; border:1px solid #2a3b55;
+border-radius:10px; background:#0f1724; cursor:pointer;
+}
+.menu-btn span{
+position:absolute; left:8px; right:8px; height:2px; background:#cfe2ff; border-radius:2px;
+transform-origin:center; transition:transform .25s, opacity .2s, top .25s;
+}
+.menu-btn span:nth-child(1){ top:9px }
+.menu-btn span:nth-child(2){ top:16px }
+.menu-btn span:nth-child(3){ top:23px }
+.menu-btn[aria-expanded="true"] span:nth-child(1){ top:16px; transform:rotate(45deg) }
+.menu-btn[aria-expanded="true"] span:nth-child(2){ opacity:0 }
+.menu-btn[aria-expanded="true"] span:nth-child(3){ top:16px; transform:rotate(-45deg) }
+
+/* Mobile layout */
+@media (max-width: 800px){
+.logo{ height:34px }
+.badge{ display:none } /* hide subline to reduce text */
+.nav-links{
+position:fixed; top:56px; right:12px; left:12px;
+background:rgba(13,18,32,.98); border:1px solid #2a3b55; border-radius:12px;
+padding:10px; display:none; flex-direction:column; gap:6px; z-index:9999;
+box-shadow:0 14px 28px rgba(0,0,0,.45);
+}
+.nav-links a{ margin:0; padding:10px 12px; border-radius:8px; border:1px solid transparent }
+.nav-links a:hover{ border-color:#2a3b55; background:#0b1320 }
+.nav-links.open{ display:flex }
+.menu-btn{ display:block }
+}
 </style>
 </head>
 <body>
-<!-- HEADER (no navigation) -->
+<!-- HEADER -->
 <header>
 <div class="wrap nav">
 <a href="/index.html" class="brand" aria-label="Go to homepage">
 <img src="/images/hooporia-logo.png" alt="Hooporia Institute Inc. Logo" class="logo" />
 <div>
 <div class="title">Basketball Cash Flow</div>
-<div class="badge">by Hooporia Institute Inc.</div>
+<div class="badge">
+<span class="lang-en">by Hooporia Institute Inc.</span>
+<span class="lang-es">por Hooporia Institute Inc.</span>
+</div>
 </div>
 </a>
-<!-- (Optional) keep or remove this CTA in header -->
-<div class="nav-cta"><a href="https://cash.heybori.co">Launch App</a></div>
+
+<!-- Language toggle -->
+<div class="lang-toggle" role="group" aria-label="Language">
+<button id="btn-en" class="active" data-setlang="en" aria-pressed="true">EN</button>
+<button id="btn-es" data-setlang="es" aria-pressed="false">ES-PR</button>
+</div>
+
+<!-- Mobile menu button -->
+<button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+<span></span><span></span><span></span>
+</button>
+
+<nav id="site-nav" class="nav-links">
+<a href="/about.html">
+<span class="lang-en">About</span><span class="lang-es">Acerca</span>
+</a>
+<a href="/contact.html">
+<span class="lang-en">Contact</span><span class="lang-es">Contacto</span>
+</a>
+<a href="/sponsors.html">
+<span class="lang-en">Sponsors</span><span class="lang-es">Auspiciadores</span>
+</a>
+<a href="/media.html">
+<span class="lang-en">Media</span><span class="lang-es">Medios</span>
+</a>
+<a class="launch" href="https://cash.heybori.co">
+<span class="lang-en">Launch App</span><span class="lang-es">Abrir la app</span>
+</a>
+</nav>
 </div>
 </header>
 
@@ -127,21 +207,34 @@ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:16
 <section class="hero">
 <div class="h-grid">
 <div class="h-lead">
-<h1>The smarter way to manage youth basketball finances.</h1>
-<p>Track income and expenses by team, league, and program. Simple entries. Private by design. Powerful summaries for sponsors and parents.</p>
+<h1>
+<span class="lang-en">The smarter way to manage youth basketball finances.</span>
+<span class="lang-es">La manera más inteligente de manejar las finanzas del baloncesto juvenil.</span>
+</h1>
+<p>
+<span class="lang-en">Track income and expenses by team, league, and program. Simple entries. Private by design. Powerful summaries for sponsors and parents.</span>
+<span class="lang-es">Registra ingresos y gastos por equipo, liga y programa. Entradas simples. Privado por diseño. Resúmenes potentes para auspiciadores y padres.</span>
+</p>
 <div class="cta-row">
-<a class="cta" href="https://cash.heybori.co">Launch App</a>
-<a class="cta secondary" href="#learn-more">Learn More</a>
+<a class="cta" href="https://cash.heybori.co">
+<span class="lang-en">Launch App</span><span class="lang-es">Abrir la app</span>
+</a>
+<a class="cta secondary" href="#learn-more">
+<span class="lang-en">Learn More</span><span class="lang-es">Aprender más</span>
+</a>
 </div>
-<div class="meta">No installs • Works on mobile • CSV export • Multi-coach friendly</div>
+<div class="meta">
+<span class="lang-en">No installs • Works on mobile • CSV export • Multi-coach friendly</span>
+<span class="lang-es">Sin instalaciones • Funciona en móvil • Exportación CSV • Para varios coaches</span>
+</div>
 </div>
 
 <div class="mock" aria-label="Preview card">
 <div class="bars"><div></div><div></div><div></div></div>
 <div class="kpis">
-<div class="kpi"><span>Income</span><b>$12,450</b></div>
-<div class="kpi"><span>Expense</span><b>$8,910</b></div>
-<div class="kpi"><span>Net</span><b>$3,540</b></div>
+<div class="kpi"><span class="lang-en">Income</span><span class="lang-es">Ingresos</span><b>$12,450</b></div>
+<div class="kpi"><span class="lang-en">Expense</span><span class="lang-es">Gastos</span><b>$8,910</b></div>
+<div class="kpi"><span class="lang-en">Net</span><span class="lang-es">Neto</span><b>$3,540</b></div>
 </div>
 </div>
 </div>
@@ -150,16 +243,25 @@ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:16
 <section id="learn-more">
 <div class="grid3">
 <div class="card">
-<h3>Built for Coaches</h3>
-<p>Fast entry, clear categories, and program-level privacy with PIN sign-in. Your data stays yours.</p>
+<h3><span class="lang-en">Built for Coaches</span><span class="lang-es">Hecho para Coaches</span></h3>
+<p>
+<span class="lang-en">Fast entry, clear categories, and program-level privacy with PIN sign-in. Your data stays yours.</span>
+<span class="lang-es">Entrada rápida, categorías claras y privacidad por programa con acceso por PIN. Tus datos son tuyos.</span>
+</p>
 </div>
 <div class="card">
-<h3>Team & League Ready</h3>
-<p>Track by team, league, or tournament. Generate summaries and CSVs for proposals and reports.</p>
+<h3><span class="lang-en">Team & League Ready</span><span class="lang-es">Listo para Equipos y Ligas</span></h3>
+<p>
+<span class="lang-en">Track by team, league, or tournament. Generate summaries and CSVs for proposals and reports.</span>
+<span class="lang-es">Registra por equipo, liga o torneo. Genera resúmenes y CSV para propuestas y reportes.</span>
+</p>
 </div>
 <div class="card">
-<h3>Mobile-First</h3>
-<p>Designed to work perfectly on phones. Add an entry in seconds — even on the bench.</p>
+<h3><span class="lang-en">Mobile-First</span><span class="lang-es">Diseño Móvil Primero</span></h3>
+<p>
+<span class="lang-en">Designed to work perfectly on phones. Add an entry in seconds — even on the bench.</span>
+<span class="lang-es">Diseñado para funcionar perfecto en teléfonos. Agrega una entrada en segundos — hasta en el banco.</span>
+</p>
 </div>
 </div>
 </section>
@@ -167,34 +269,103 @@ border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:16
 <section>
 <div class="grid3">
 <div class="card">
-<h2>How it works</h2>
-<p>Sign in with your PIN, add entries (income or expense), and view instant summaries by category, team, league, and program.</p>
+<h2><span class="lang-en">How it works</span><span class="lang-es">Cómo funciona</span></h2>
+<p>
+<span class="lang-en">Sign in with your PIN, add entries (income or expense), and view instant summaries by category, team, league, and program.</span>
+<span class="lang-es">Entra con tu PIN, añade ingresos o gastos y ve resúmenes al instante por categoría, equipo, liga y programa.</span>
+</p>
 </div>
 <div class="card">
-<h2>Private by design</h2>
-<p>Each program sees only its data. Export CSV on demand for accounting or sponsor decks.</p>
+<h2><span class="lang-en">Private by design</span><span class="lang-es">Privado por diseño</span></h2>
+<p>
+<span class="lang-en">Each program sees only its data. Export CSV on demand for accounting or sponsor decks.</span>
+<span class="lang-es">Cada programa ve solo sus datos. Exporta CSV bajo demanda para contabilidad o presentaciones a auspiciadores.</span>
+</p>
 </div>
 <div class="card">
 <h2>Hooporia Institute Inc.</h2>
-<p>We build simple, resilient tools for youth sports programs in Puerto Rico and beyond.</p>
+<p>
+<span class="lang-en">We build simple, resilient tools for youth sports programs in Puerto Rico and beyond.</span>
+<span class="lang-es">Construimos herramientas simples y resilientes para programas de deporte juvenil en Puerto Rico y más allá.</span>
+</p>
 </div>
 </div>
 </section>
 
 <section class="center">
-<a class="cta" href="https://cash.heybori.co" aria-label="Open Basketball Cash Flow app">Launch App</a>
-<div class="meta" style="margin-top:10px">Questions? <a href="mailto:heyborico@gmail.com">heyborico@gmail.com</a></div>
+<a class="cta" href="https://cash.heybori.co" aria-label="Open Basketball Cash Flow app">
+<span class="lang-en">Launch App</span><span class="lang-es">Abrir la app</span>
+</a>
+<div class="meta" style="margin-top:10px">
+<span class="lang-en">Questions?</span><span class="lang-es">¿Preguntas?</span>
+<a href="mailto:FiatPalante@gmail.com">FiatPalante@gmail.com</a>
+</div>
 </section>
 </main>
 
 <footer style="border-top:1px solid #243047; color:#a7b1c2; font-size:13px; text-align:center; padding:20px; margin-top:40px;">
 © <script>document.write(new Date().getFullYear());</script> Hooporia Institute Inc. — All Rights Reserved.<br>
 EIN: [66-1104700] • UEI: [T411JSGE5L65]<br>
-Basketball Cash Flow is a project operated by Hooporia Institute Inc., a registered nonprofit organization dedicated to advancing youth basketball transparency and development.<br>
-<a href="privacy.html" style="color:#9fc1ff; text-decoration:underline;">Privacy Policy</a> •
-<a href="terms.html" style="color:#9fc1ff; text-decoration:underline;">Terms of Use</a> •
-<a href="mailto:heyborico@gmail.com" style="color:#9fc1ff; text-decoration:underline;">Contact Us</a>
+<span class="lang-en">Basketball Cash Flow is a project operated by Hooporia Institute Inc., a registered nonprofit organization dedicated to advancing youth basketball transparency and development.</span>
+<span class="lang-es">Basketball Cash Flow es un proyecto de Hooporia Institute Inc., una organización sin fines de lucro dedicada a la transparencia y el desarrollo del baloncesto juvenil.</span><br>
+<a href="privacy.html" style="color:#9fc1ff; text-decoration:underline;">
+<span class="lang-en">Privacy Policy</span><span class="lang-es">Política de Privacidad</span>
+</a> •
+<a href="terms.html" style="color:#9fc1ff; text-decoration:underline;">
+<span class="lang-en">Terms of Use</span><span class="lang-es">Términos de Uso</span>
+</a> •
+<a href="mailto:FiatPalante@gmail.com" style="color:#9fc1ff; text-decoration:underline;">
+<span class="lang-en">Contact Us</span><span class="lang-es">Contáctanos</span>
+</a>
 </footer>
 
+<!-- Mobile menu behavior -->
+<script>
+(function(){
+const btn = document.querySelector('.menu-btn');
+const nav = document.getElementById('site-nav');
+if(!btn || !nav) return;
+
+function closeMenu(){
+btn.setAttribute('aria-expanded','false');
+nav.classList.remove('open');
+document.body.style.overflow = '';
+}
+function toggle(){
+const exp = btn.getAttribute('aria-expanded') === 'true';
+btn.setAttribute('aria-expanded', String(!exp));
+nav.classList.toggle('open', !exp);
+document.body.style.overflow = (!exp ? 'hidden' : '');
+}
+btn.addEventListener('click', toggle);
+nav.addEventListener('click', (e)=>{ if (e.target.closest('a')) closeMenu(); }, true);
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+document.addEventListener('click', e => {
+if (!nav.contains(e.target) && !btn.contains(e.target)) closeMenu();
+});
+closeMenu();
+window.__closeNavMenu = closeMenu;
+})();
+</script>
+
+<!-- Language toggle behavior -->
+<script>
+(function(){
+const key='lang_index';
+const root=document.documentElement;
+const btnEn=document.getElementById('btn-en');
+const btnEs=document.getElementById('btn-es');
+function setLang(lang){
+root.setAttribute('data-lang',lang);
+btnEn.classList.toggle('active', lang==='en'); btnEn.setAttribute('aria-pressed', lang==='en');
+btnEs.classList.toggle('active', lang==='es'); btnEs.setAttribute('aria-pressed', lang==='es');
+try{ localStorage.setItem(key,lang);}catch(_){}
+}
+const saved=(()=>{try{return localStorage.getItem(key)}catch(_){return null}})();
+setLang(saved==='es'?'es':'en');
+btnEn.addEventListener('click',()=>setLang('en'));
+btnEs.addEventListener('click',()=>setLang('es'));
+})();
+</script>
 </body>
 </html>
