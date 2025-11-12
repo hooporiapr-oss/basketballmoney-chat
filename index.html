@@ -1,19 +1,26 @@
 <!doctype html>
 <html lang="en" data-lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Basketball Cash Flow — Hooporia Institute Inc.</title>
-<meta name="theme-color" content="#0e1116"/>
+<meta name="description" content="Basketball Cash Flow is a project operated by Hooporia Institute Inc., a nonprofit organization advancing youth basketball transparency and development.">
+<meta name="theme-color" content="#0e1116" />
+
 <style>
-:root{--bg:#0e1116;--card:#161c26;--line:#232e3f;--text:#ecf1f8;--muted:#a7b1c2;--acc1:#2dd4bf;--acc2:#60a5fa}
+:root{
+--bg:#0e1116;--card:#161c26;--line:#232e3f;--text:#ecf1f8;--muted:#a7b1c2;
+--acc1:#2dd4bf;--acc2:#60a5fa;--ctaTxt:#06221f;
+}
 *{box-sizing:border-box}
 body{
 margin:0;font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
 color:var(--text);
-background:linear-gradient(180deg,#0b0f14,#0e1116);
+background:linear-gradient(180deg,#0b0f14 0%,#0e1116 100%);
 }
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HEADER */
 header{
 position:sticky;top:0;z-index:10;
 backdrop-filter:saturate(140%) blur(6px);
@@ -27,35 +34,68 @@ border-bottom:1px solid var(--line);
 .title{font-weight:800;letter-spacing:.2px}
 .badge{font-size:12px;color:var(--muted)}
 
-/* Toggle */
-.lang-toggle{margin-left:auto;display:flex;gap:8px}
+/* LANG TOGGLE */
+.lang-toggle{display:flex;gap:8px;margin-left:auto}
 .lang-toggle button{
 border:1px solid #2a3b55;background:#0d1320;color:#cfe2ff;
 border-radius:20px;padding:6px 10px;cursor:pointer;font-size:12px
 }
 .lang-toggle button.active{
 background:linear-gradient(90deg,var(--acc1),var(--acc2));
-color:#06221f;border:none;font-weight:800
+color:var(--ctaTxt);border:none;font-weight:800
 }
 [data-lang="en"] .lang-es{display:none}
 [data-lang="es"] .lang-en{display:none}
 
-/* Hero & Cards */
+/* HERO + CONTENT */
 .hero{padding:64px 0 36px}
+.h-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:900px){.h-grid{grid-template-columns:1fr}}
 .h-lead h1{margin:0 0 10px 0;font-size:clamp(28px,4.6vw,44px);line-height:1.05}
 .h-lead p{color:var(--muted);font-size:clamp(16px,2.8vw,18px)}
-.cta{display:inline-block;margin-top:18px;padding:14px 18px;border-radius:12px;font-weight:900;
-background:linear-gradient(90deg,var(--acc1),var(--acc2));color:#06221f;border:none}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.cta{
+display:inline-block;padding:14px 18px;border-radius:12px;font-weight:900;
+background:linear-gradient(90deg,var(--acc1),var(--acc2));color:var(--ctaTxt);border:none;
+box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
 .meta{margin-top:14px;font-size:12px;color:var(--muted)}
-.footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:16px 0;margin-top:40px;text-align:center}
-.footer a{color:#9fc1ff;text-decoration:underline}
+
+/* CARD MOCKUP */
+.mock{
+background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;
+min-height:240px;box-shadow:0 12px 32px rgba(0,0,0,.35);
+}
+.bars{height:160px;display:flex;gap:10px;align-items:flex-end}
+.bars div{flex:1;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#1b2a3f,#0f1724)}
+.bars div:nth-child(1){height:50%}
+.bars div:nth-child(2){height:80%;background:linear-gradient(180deg,#0f3b3b,#0a1822)}
+.bars div:nth-child(3){height:40%}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.kpi{background:#0f1622;border:1px solid #1f2d42;padding:10px;border-radius:10px;text-align:center}
+.kpi b{display:block;font-size:18px}
+
+/* CARDS */
+section{padding:30px 0}
+.grid3{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.card{
+background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;
+box-shadow:0 10px 26px rgba(0,0,0,.28);
+}
+h2{margin:0 0 12px 0;font-size:22px}
+h3{margin:0 0 6px 0;font-size:16px}
+p{margin:0;color:var(--muted);line-height:1.5}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;padding:20px;margin-top:40px}
 </style>
 </head>
 <body>
 <header>
 <div class="wrap nav">
-<a href="/index.html" class="brand" aria-label="Go to homepage">
-<img src="/images/hooporia-logo.png" alt="Hooporia Institute Inc. Logo" class="logo"/>
+<div class="brand">
+<img src="/images/hooporia-logo.png" alt="Hooporia Institute Inc. Logo" class="logo" />
 <div>
 <div class="title">Basketball Cash Flow</div>
 <div class="badge">
@@ -63,38 +103,114 @@ background:linear-gradient(90deg,var(--acc1),var(--acc2));color:#06221f;border:n
 <span class="lang-es">por Hooporia Institute Inc.</span>
 </div>
 </div>
-</a>
+</div>
 <div class="lang-toggle" role="group" aria-label="Language">
-<button id="btn-en" class="active" data-setlang="en" aria-pressed="true">EN</button>
-<button id="btn-es" data-setlang="es" aria-pressed="false">ES-PR</button>
+<button id="btn-en" class="active" aria-pressed="true">EN</button>
+<button id="btn-es" aria-pressed="false">ES-PR</button>
 </div>
 </div>
 </header>
 
 <main class="wrap">
 <section class="hero">
+<div class="h-grid">
 <div class="h-lead">
 <h1>
-<span class="lang-en">Welcome to Basketball Cash Flow Access</span>
-<span class="lang-es">Bienvenido a Basketball Cash Flow Access</span>
+<span class="lang-en">The smarter way to manage youth basketball finances.</span>
+<span class="lang-es">La manera más inteligente de manejar las finanzas del baloncesto juvenil.</span>
 </h1>
 <p>
-<span class="lang-en">Request your secure Access PIN to manage your basketball program’s finances.</span>
-<span class="lang-es">Solicita tu PIN de acceso seguro para administrar las finanzas de tu programa de baloncesto.</span>
+<span class="lang-en">Track income and expenses by team, league, and program. Simple entries. Private by design. Powerful summaries for sponsors and parents.</span>
+<span class="lang-es">Registra ingresos y gastos por equipo, liga y programa. Entradas simples. Privado por diseño. Resúmenes potentes para auspiciadores y padres.</span>
 </p>
-<a class="cta" href="https://yourcognitoformlink.com">
-<span class="lang-en">Request Access PIN</span>
-<span class="lang-es">Solicitar PIN de Acceso</span>
+<div class="cta-row">
+<a class="cta" href="https://cash.heybori.co">
+<span class="lang-en">Launch App</span>
+<span class="lang-es">Abrir la App</span>
 </a>
-<div class="meta">
-<span class="lang-en">Hooporia Institute Inc. • Secure youth basketball program management</span>
-<span class="lang-es">Hooporia Institute Inc. • Gestión segura de programas juveniles de baloncesto</span>
 </div>
+<div class="meta">
+<span class="lang-en">No installs • Works on mobile • CSV export • Multi-coach friendly</span>
+<span class="lang-es">Sin instalaciones • Funciona en móvil • Exportación CSV • Para varios coaches</span>
+</div>
+</div>
+<div class="mock" aria-label="Preview card">
+<div class="bars"><div></div><div></div><div></div></div>
+<div class="kpis">
+<div class="kpi"><span class="lang-en">Income</span><span class="lang-es">Ingresos</span><b>$12,450</b></div>
+<div class="kpi"><span class="lang-en">Expense</span><span class="lang-es">Gastos</span><b>$8,910</b></div>
+<div class="kpi"><span class="lang-en">Net</span><span class="lang-es">Neto</span><b>$3,540</b></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="learn-more">
+<div class="grid3">
+<div class="card">
+<h3><span class="lang-en">Built for Coaches</span><span class="lang-es">Hecho para Coaches</span></h3>
+<p>
+<span class="lang-en">Fast entry, clear categories, and program-level privacy with PIN sign-in. Your data stays yours.</span>
+<span class="lang-es">Entrada rápida, categorías claras y privacidad por programa con acceso por PIN. Tus datos son tuyos.</span>
+</p>
+</div>
+<div class="card">
+<h3><span class="lang-en">Team & League Ready</span><span class="lang-es">Listo para Equipos y Ligas</span></h3>
+<p>
+<span class="lang-en">Track by team, league, or tournament. Generate summaries and CSVs for proposals and reports.</span>
+<span class="lang-es">Registra por equipo, liga o torneo. Genera resúmenes y CSV para propuestas y reportes.</span>
+</p>
+</div>
+<div class="card">
+<h3><span class="lang-en">Mobile-First</span><span class="lang-es">Diseño Móvil Primero</span></h3>
+<p>
+<span class="lang-en">Designed to work perfectly on phones. Add an entry in seconds — even on the bench.</span>
+<span class="lang-es">Diseñado para funcionar perfecto en teléfonos. Agrega una entrada en segundos — hasta en el banco.</span>
+</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid3">
+<div class="card">
+<h2><span class="lang-en">How it works</span><span class="lang-es">Cómo funciona</span></h2>
+<p>
+<span class="lang-en">Sign in with your PIN, add entries (income or expense), and view instant summaries by category, team, league, and program.</span>
+<span class="lang-es">Entra con tu PIN, añade ingresos o gastos y ve resúmenes al instante por categoría, equipo, liga y programa.</span>
+</p>
+</div>
+<div class="card">
+<h2><span class="lang-en">Private by design</span><span class="lang-es">Privado por diseño</span></h2>
+<p>
+<span class="lang-en">Each program sees only its data. Export CSV on demand for accounting or sponsor decks.</span>
+<span class="lang-es">Cada programa ve solo sus datos. Exporta CSV bajo demanda para contabilidad o presentaciones a auspiciadores.</span>
+</p>
+</div>
+<div class="card">
+<h2>Hooporia Institute Inc.</h2>
+<p>
+<span class="lang-en">We build simple, resilient tools for youth sports programs in Puerto Rico and beyond.</span>
+<span class="lang-es">Construimos herramientas simples y resilientes para programas de deporte juvenil en Puerto Rico y más allá.</span>
+</p>
+</div>
+</div>
+</section>
+
+<section class="center" style="text-align:center;">
+<a class="cta" href="https://cash.heybori.co" aria-label="Open Basketball Cash Flow app">
+<span class="lang-en">Launch App</span>
+<span class="lang-es">Abrir la App</span>
+</a>
+<div class="meta" style="margin-top:10px">
+<span class="lang-en">Questions?</span>
+<span class="lang-es">¿Preguntas?</span>
+<a href="mailto:FiatPalante@gmail.com">FiatPalante@gmail.com</a>
 </div>
 </section>
 </main>
 
-<footer class="footer">
+<footer>
 © <script>document.write(new Date().getFullYear());</script> Hooporia Institute Inc. — All Rights Reserved.<br>
 EIN: [66-1104700] • UEI: [T411JSGE5L65]<br>
 <span class="lang-en">Basketball Cash Flow is a project operated by Hooporia Institute Inc., a registered nonprofit dedicated to advancing youth basketball transparency and development.</span>
@@ -109,8 +225,10 @@ const btnEn=document.getElementById('btn-en');
 const btnEs=document.getElementById('btn-es');
 function setLang(lang){
 root.setAttribute('data-lang',lang);
-btnEn.classList.toggle('active', lang==='en'); btnEn.setAttribute('aria-pressed', lang==='en');
-btnEs.classList.toggle('active', lang==='es'); btnEs.setAttribute('aria-pressed', lang==='es');
+btnEn.classList.toggle('active', lang==='en');
+btnEs.classList.toggle('active', lang==='es');
+btnEn.setAttribute('aria-pressed', lang==='en');
+btnEs.setAttribute('aria-pressed', lang==='es');
 try{localStorage.setItem(key,lang);}catch(_){}
 }
 const saved=(()=>{try{return localStorage.getItem(key)}catch(_){return null}})();
