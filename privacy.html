@@ -4,82 +4,312 @@
 <meta charset="utf-8">
 <title>Privacy Policy — Hoops Ledger</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+--bg:#0e1116;
+--card:#151a22;
+--line:#1f2733;
+--text:#e8edf4;
+--muted:#a7b1c2;
+--accent:#2dd4bf;
+--accent2:#60a5fa;
+}
+*{ box-sizing:border-box; }
+
+body{
+margin:0;
+padding:30px 20px 40px;
+min-height:100vh;
+background:linear-gradient(180deg,#0b0f14,#0e1116);
+color:var(--text);
+font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+display:flex;
+justify-content:center;
+}
+.page{
+width:100%;
+max-width:820px;
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:22px 20px 24px;
+box-shadow:0 16px 40px rgba(0,0,0,.45);
+}
+@media (min-width:720px){
+.page{ padding:26px 26px 28px; }
+}
+
+h1{
+margin:0 0 8px 0;
+font-size:24px;
+letter-spacing:.2px;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;
+color:transparent;
+}
+h2{ margin:18px 0 8px 0; font-size:18px; }
+h3{ margin:14px 0 6px 0; font-size:15px; }
+p{ margin:6px 0; color:var(--muted); line-height:1.6; }
+ul{ margin:6px 0 10px 1.2em; padding:0; color:var(--muted); }
+li{ margin:3px 0; }
+
+a{ color:#9fc1ff; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.meta-line{ font-size:13px; color:var(--muted); margin-bottom:8px; }
+
+.toggle-row{
+display:flex;
+justify-content:flex-start;
+gap:8px;
+margin:8px 0 14px 0;
+}
+.toggle-row button{
+padding:6px 12px;
+border-radius:999px;
+border:1px solid #2a3b55;
+background:#0f1724;
+color:#cfe2ff;
+font-size:13px;
+cursor:pointer;
+}
+.toggle-row button.active{
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+color:#041015;
+border-color:#3fd2c9;
+font-weight:600;
+}
+.toggle-row button:hover:not(.active){
+background:#111a2a;
+}
+
+.lang{ margin-top:4px; }
+.footer-note{
+margin-top:16px;
+padding-top:10px;
+border-top:1px solid #232f44;
+font-size:12px;
+color:var(--muted);
+}
+</style>
 </head>
-<body style="max-width:800px;margin:40px auto;font-family:system-ui;line-height:1.6;padding:0 20px;">
-
+<body>
+<div class="page">
 <h1>Privacy Policy</h1>
-<p><b>Last Updated:</b> January 2025</p>
 
-<p>Hoops Ledger is a service operated by <b>Hooporia Institute Inc.</b>, a nonprofit organization dedicated to improving transparency, accountability, and development in youth basketball programs. This Privacy Policy explains how we collect, protect, and use information when you use Hoops Ledger.</p>
+<div class="toggle-row">
+<button id="btn-en" class="active" onclick="toggleLang('en')">English</button>
+<button id="btn-es" onclick="toggleLang('es')">Español (PR)</button>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang en">
+<p class="meta-line"><strong>Effective Date:</strong> January 2025<br>
+<strong>Last Updated:</strong> January 2025</p>
+
+<p>
+Hoops Ledger is a project operated by <b>Hooporia Institute Inc.</b>, a nonprofit organization dedicated
+to advancing transparency and development in youth basketball programs. This Privacy Policy explains
+how we collect, use, and protect information when you use Hoops Ledger or related services.
+</p>
 
 <h2>1. Information We Collect</h2>
 
-<h3>A. Information You Enter</h3>
-<p>Coaches, administrators, and authorized users may enter:</p>
+<h3>a. Program &amp; Financial Data</h3>
+<p>We collect only the information necessary to operate the service, such as:</p>
 <ul>
 <li>Income and expense entries</li>
-<li>Team names</li>
-<li>League names</li>
-<li>Program names</li>
-<li>Notes related to transactions</li>
+<li>Team, league, and program names</li>
+<li>Optional notes attached to each entry</li>
 </ul>
-<p>We do not require personal information to use Hoops Ledger.</p>
 
-<h3>B. PIN-Based Access</h3>
-<p>Programs access the system using a secure PIN assigned by Hooporia Institute Inc. We do not store the PIN itself — only a one-way encrypted hash.</p>
+<h3>b. PIN &amp; Access Credentials</h3>
+<p>
+Programs access Hoops Ledger using PIN-based authentication. We do <b>not</b> store PINs in plain text.
+Instead, we store a secure cryptographic hash to verify access.
+</p>
 
-<h3>C. Technical Information</h3>
-<p>We may automatically collect limited technical data such as:</p>
+<h3>c. Technical &amp; Usage Data</h3>
+<p>To maintain reliability and security, we may log:</p>
 <ul>
-<li>Browser type</li>
-<li>IP address</li>
-<li>Device type</li>
-<li>Error logs</li>
+<li>Browser and device type</li>
+<li>Approximate region via IP (for security and abuse monitoring)</li>
+<li>Basic usage and error logs</li>
 </ul>
-<p>This information helps maintain platform stability and security.</p>
 
 <h2>2. How We Use Information</h2>
 <p>We use collected information to:</p>
 <ul>
-<li>Enable program-level financial tracking</li>
-<li>Generate summaries, charts, and CSV reports</li>
-<li>Maintain secure, PIN-protected spaces</li>
-<li>Improve reliability and performance</li>
+<li>Provide program-level cash flow tracking and summaries</li>
+<li>Generate CSV exports for reporting and accounting</li>
+<li>Maintain secure, PIN-based access per program</li>
+<li>Monitor and improve performance and reliability</li>
 </ul>
 
-<h2>3. How We Protect Information</h2>
-<p>Your program data is isolated. In multi-PIN mode, each program can only see its own entries.</p>
-<p>We use:</p>
+<h2>3. Data Protection</h2>
+<p>Hoops Ledger is designed with privacy and security as a priority:</p>
 <ul>
-<li>Encrypted PIN hashing</li>
-<li>Secure storage practices</li>
-<li>Access-controlled environment variables</li>
-<li>Regular internal audits</li>
+<li>PINS are stored only as hashed values, not in plain text</li>
+<li>Program data is logically separated and scoped per PIN</li>
+<li>Access to infrastructure is restricted to authorized administrators</li>
 </ul>
 
 <h2>4. Sharing of Information</h2>
-<p>We do <b>not</b> sell or share your information with external advertisers, data brokers, or third-party marketing systems.</p>
-
-<p>We may share information only when required by:</p>
+<p>
+We do <b>not</b> sell, rent, or share your program data with advertisers or data brokers.
+We may disclose limited information only when:
+</p>
 <ul>
-<li>Applicable law</li>
-<li>Valid legal process (“court order”)</li>
-<li>Safety, misuse, or fraud investigations</li>
+<li>Required by law, subpoena, or valid legal process</li>
+<li>Necessary to investigate or prevent fraud, abuse, or security incidents</li>
 </ul>
 
 <h2>5. Data Retention</h2>
-<p>Financial entries are retained for program transparency and historical recordkeeping unless a program formally requests deletion.</p>
+<p>
+Financial entries and program records are retained for as long as the program actively uses Hoops Ledger
+or until a deletion request is received from an authorized representative.
+</p>
 
 <h2>6. Youth Privacy</h2>
-<p>Hoops Ledger does not collect personal information about minors. Data is intentionally scoped to programs and financial entries, not individuals.</p>
+<p>
+Hoops Ledger is intended for use by coaches, program directors, and administrators. We do not knowingly
+collect personal information directly from minors. Any information about teams or participants is managed
+by authorized adults at the program level.
+</p>
 
-<h2>7. Updates to This Policy</h2>
-<p>We may update this Privacy Policy to reflect improvements or regulatory requirements. Updates will be posted on this page with a new “Last Updated” date.</p>
+<h2>7. Changes to This Policy</h2>
+<p>
+We may update this Privacy Policy from time to time. When we do, we will revise the “Last Updated” date
+at the top of this page. Material changes may also be communicated to participating programs by email
+or in-product notice.
+</p>
 
-<h2>8. Contact Us</h2>
-<p>For questions, concerns, or data requests, contact:</p>
-<p><b>Hooporia Institute Inc.</b><br>
-Email: <a href="mailto:FiatPalante@gmail.com">FiatPalante@gmail.com</a></p>
+<h2>8. Contact</h2>
+<p>
+For questions about this Privacy Policy or how your data is handled, you can contact:
+</p>
+<p>
+<b>Hooporia Institute Inc.</b><br>
+Email: <a href="mailto:FiatPalante@gmail.com">FiatPalante@gmail.com</a>
+</p>
+</div>
 
+<!-- SPANISH (PUERTO RICO) -->
+<div class="lang es" style="display:none;">
+<p class="meta-line"><strong>Fecha de Vigencia:</strong> enero 2025<br>
+<strong>Última Actualización:</strong> enero 2025</p>
+
+<p>
+Hoops Ledger es un proyecto operado por <b>Hooporia Institute Inc.</b>, una organización sin fines de lucro
+dedicada a promover la transparencia y el desarrollo en programas de baloncesto juvenil. Esta Política de
+Privacidad explica cómo recopilamos, usamos y protegemos la información cuando utilizas Hoops Ledger u otros
+servicios relacionados.
+</p>
+
+<h2>1. Información que Recopilamos</h2>
+
+<h3>a. Datos del Programa y Financieros</h3>
+<p>Recopilamos solo la información necesaria para operar el servicio, como:</p>
+<ul>
+<li>Entradas de ingresos y gastos</li>
+<li>Nombres de equipos, ligas y programas</li>
+<li>Notas opcionales adjuntas a cada entrada</li>
+</ul>
+
+<h3>b. PIN y Credenciales de Acceso</h3>
+<p>
+Los programas acceden a Hoops Ledger mediante un PIN. No almacenamos el PIN en texto claro.
+En su lugar, guardamos un valor cifrado (hash) para verificar el acceso.
+</p>
+
+<h3>c. Datos Técnicos y de Uso</h3>
+<p>Para mantener la seguridad y estabilidad del sistema, podemos registrar:</p>
+<ul>
+<li>Tipo de navegador y dispositivo</li>
+<li>Región aproximada por dirección IP (para seguridad y monitoreo de abuso)</li>
+<li>Registros básicos de uso y errores</li>
+</ul>
+
+<h2>2. Cómo Usamos la Información</h2>
+<p>Utilizamos la información recopilada para:</p>
+<ul>
+<li>Ofrecer herramientas de flujo de efectivo por programa</li>
+<li>Generar resúmenes y exportaciones CSV para informes y contabilidad</li>
+<li>Mantener acceso seguro por PIN a cada programa</li>
+<li>Monitorear y mejorar el rendimiento y la confiabilidad</li>
+</ul>
+
+<h2>3. Protección de Datos</h2>
+<p>Hoops Ledger está diseñado con la privacidad y seguridad como prioridad:</p>
+<ul>
+<li>Los PIN se almacenan solo como valores cifrados, no en texto claro</li>
+<li>Los datos se mantienen separados y asociados al programa correspondiente</li>
+<li>El acceso a la infraestructura está limitado a administradores autorizados</li>
+</ul>
+
+<h2>4. Compartición de Información</h2>
+<p>
+<b>No</b> vendemos ni alquilamos tus datos a anunciantes ni a corredores de datos.
+Solo podríamos divulgar información cuando:
+</p>
+<ul>
+<li>Lo requiera la ley, una orden judicial u otro proceso legal válido</li>
+<li>Sea necesario para investigar o prevenir fraude, abuso o incidentes de seguridad</li>
+</ul>
+
+<h2>5. Retención de Datos</h2>
+<p>
+Las entradas financieras y los registros de programa se conservan mientras el programa utilice activamente
+Hoops Ledger o hasta que un representante autorizado solicite su eliminación.
+</p>
+
+<h2>6. Privacidad de Menores</h2>
+<p>
+Hoops Ledger está dirigido a entrenadores, directores y administradores de programas. No recopilamos
+deliberadamente información personal directamente de menores de edad. Cualquier información sobre equipos
+o participantes es gestionada por adultos autorizados del programa.
+</p>
+
+<h2>7. Cambios a Esta Política</h2>
+<p>
+Podemos actualizar esta Política de Privacidad de tiempo en tiempo. Cuando lo hagamos, actualizaremos la
+fecha de “Última Actualización” al inicio de esta página. Los cambios importantes podrán comunicarse también
+por correo electrónico o mediante avisos dentro de la plataforma.
+</p>
+
+<h2>8. Contacto</h2>
+<p>Si tienes preguntas sobre esta Política de Privacidad o sobre cómo se maneja tu información, puedes escribir a:</p>
+<p>
+<b>Hooporia Institute Inc.</b><br>
+Email: <a href="mailto:FiatPalante@gmail.com">FiatPalante@gmail.com</a>
+</p>
+</div>
+
+<div class="footer-note">
+Hoops Ledger es un proyecto de Hooporia Institute Inc., dedicado a fortalecer y organizar
+el baloncesto juvenil con claridad y responsabilidad financiera.
+</div>
+</div>
+
+<script>
+function toggleLang(lang){
+document.querySelectorAll('.lang').forEach(el=>{
+el.style.display = el.classList.contains(lang) ? 'block' : 'none';
+});
+// button active state
+const btnEn = document.getElementById('btn-en');
+const btnEs = document.getElementById('btn-es');
+if(lang === 'en'){
+btnEn.classList.add('active');
+btnEs.classList.remove('active');
+}else{
+btnEs.classList.add('active');
+btnEn.classList.remove('active');
+}
+}
+</script>
 </body>
 </html>
